@@ -9,10 +9,10 @@ body{
     color:white;
 }
 
-#end{
+.nondisplay{
     display: none;
 }
-#end,#start{
+#end,#start,#restart{
     background-color: darkblue;
     border: 2px solid blue !important;
     color: white;
@@ -21,7 +21,7 @@ body{
     margin-top:20px;
 
 }
-#end:hover,#start:hover{
+#end:hover,#start:hover,#restart:hover{
     background-color: lightblue;
     color: blue
 }
