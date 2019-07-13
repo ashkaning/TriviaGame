@@ -1,0 +1,27 @@
+body{
+    background-image: url(../images/bg.png) !important;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.container{
+    background-color: rgba(0,0,0,0.6);
+    height: 650px;
+    color:white;
+}
+
+#end{
+    display: none;
+}
+#end,#start{
+    background-color: darkblue;
+    border: 2px solid blue !important;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bolder;
+    margin-top:20px;
+
+}
+#end:hover,#start:hover{
+    background-color: lightblue;
+    color: blue
+}

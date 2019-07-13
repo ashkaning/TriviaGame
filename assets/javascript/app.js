@@ -1,52 +1,59 @@
+
 window.onload = function() {
 $('#start').on('click',function(){
     game.start();
+    $("#end").show()
+
  })
  
  $("#end").on('click',function(){
     //alert("hi")
     game.done();
+    $("#end").hide()
   
  })
 }
+var  correct= 0
+var  incorrect= 0
+var  counter = 30
+
  var questions = [{
-     question: "what was the first full-length CGI movie",
-     answers:["A bug's life", "monster Inc", "Toy Story", "The Lion King"],
-     correctAnswer:"Toy Story" 
+     question: "",
+     answers:["  ", "  ", "  ", "  "],
+     correctAnswer:"  " 
  }, {
-     question: "what's the name of the travia's author",
-     answers:["Hui", "mhhhhhhhh", "xxxxxx", "I don't know"],
-     correctAnswer:"Hui"
+     question: "",
+     answers:["  ", "  ", "  ", "  "],
+     correctAnswer:"  "
  }, {
-     question: "what is the author's favorite food",
-     answers:["fried chicken", "steam veggie", "lettuce", "carrot"],
-     correctAnswer:"fried chicken"
+     question: "",
+     answers:["  ", "  ", "  ", "  "],
+     correctAnswer:"  "
  }, {
-     question: "Does she like travia game?",
-     answers:["Yes", "Nope", "she doesn't even know", "so so"],
-     correctAnswer:"so so"
+     question: "",
+     answers:["  ", "  ", "  ", "  "],
+     correctAnswer:"  "
  }, {
-     question: "Do you like this game?",
-     answers:["Yeees!", "Nope...", "It's ok", "I don't know"],
-     correctAnswer:"Yeees!"
+     question: "",
+     answers:[" ", "  ", "  ", "  "],
+     correctAnswer:"  "
  }];
  
  var game = {
-     corret: 0,
-     incorrect: 0,
-     counter: 20,
+     
      countdown: function(){
-         game.counter-- ;
-         $('#counter').html(game.counter);
-         if(game.counter<=0){
+         counter-- ;
+         $('#counter').html(counter);
+         if(counter<=0){
              console.log("time is up!");
+             $("#end").hide()
                  game.done();
  
          }
      },
      start: function(){
          timer = setInterval(game.countdown,1000);
-         $('#subwrapper').prepend('<h2>Time Remaining: <span id="counter">20</span> Seconds</h2>')
+         $('#subwrapper').prepend('<h2>Time Remaining: <span id="counter">30</span> Seconds</h2>')
          $('#start').remove();
          for(var i= 0; i<questions.length; i++){
              $('#subwrapper').append('<h2>'+questions[i].question+'</h2>');
@@ -57,53 +64,61 @@ $('#start').on('click',function(){
      },
      done: function(){
          $.each($('input[name="question-0"]:checked'),function(){
-             if($(this).val()==questions[0].correctAnswer){
-                 game.correct++;
+             if($(this).val()===questions[0].correctAnswer){
+               correct = correct+1
+              
+                
              } else{
-                 game.incorrect++;
+                incorrect= incorrect+1;
+               
              }
          });
  
          $.each($('input[name="question-1"]:checked'),function(){
              if($(this).val()==questions[1].correctAnswer){
-                 game.correct++;
+                correct =  correct+1;
+                 //alert(correct)
              } else{
-                 game.incorrect++;
+                incorrect= incorrect+1;
              }
          });
-         $.each($('input[name="question-1"]:checked'),function(){
+         $.each($('input[name="question-2"]:checked'),function(){
              if($(this).val()==questions[2].correctAnswer){
-                 game.correct++;
+                correct = correct+1;
              } else{
-                 game.incorrect++;
+                incorrect= incorrect+1;
              }
          });
-         $.each($('input[name="question-1"]:checked'),function(){
+         $.each($('input[name="question-3"]:checked'),function(){
              if($(this).val()==questions[3].correctAnswer){
-                 game.correct++;
+                correct = correct+1;
              } else{
-                 game.incorrect++;
+                incorrect=  incorrect+1;
              }
          });
-         $.each($('input[name="question-1"]:checked'),function(){
+         $.each($('input[name="question-4"]:checked'),function(){
              if($(this).val()==questions[4].correctAnswer){
-                 game.correct++;
+                correct = correct+1;
              } else{
-                 game.incorrect++;
+                incorrect= incorrect+1;
              }
          });
          
          this.result();
      },
      result: function(){
-        
+
+       
          clearInterval(timer);
          $('#subwrapper h2').remove();
      
-         $('#subwrapper').html("<h2>alldone!</h2>");
-         $('#subwrapper').append("<h3>Correct Answers: "+this.correct+"</h3>"); 
-         $('#subwrapper').append("<h3>Incorrect Answers: "+this.incorrect+"</h3>"); 
-         $('#subwrapper').append("<h3>Unanswered: "+(questions.length-(this.incorrect+this.corret))+"</h3>"); 
+         $('#subwrapper').html("<h2>All Done!</h2>");
+         console.log(correct)
+         var c = correct;
+         var un = incorrect
+         $('#subwrapper').append("<h3>Correct Answers: "+c+"</h3>"); 
+         $('#subwrapper').append("<h3>Incorrect Answers: "+un+"</h3>"); 
+         $('#subwrapper').append("<h3>Unanswered: "+(questions.length-(un+c))+"</h3>"); 
  
      }
  
